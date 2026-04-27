@@ -46,13 +46,13 @@ public class Data_Barang extends javax.swing.JFrame {
     }
 
     protected void datatable() {
-        Object[] Baris = {"Kode", "Nama", "Jenis", "Harga Beli", "Harga Jual"};
+        Object[] Baris = {"Kode", "Nama", "Jenis", "Harga_Beli", "Harga_Jual"};
         tabmode = new DefaultTableModel(null, Baris);
 
         String cari = txtcari.getText();
 
         try {
-            String sql = "SELECT * FROM Data_Barang WHERE kd_brg LIKE '%" + cari + "%' "
+            String sql = "SELECT *  FROM Barang WHERE kd_brg LIKE '%" + cari + "%' "
                        + "OR nm_brg LIKE '%" + cari + "%' ORDER BY kd_brg ASC";
 
             Statement stat = conn.createStatement();
@@ -63,8 +63,8 @@ public class Data_Barang extends javax.swing.JFrame {
                     hasil.getString("kd_brg"),
                     hasil.getString("nm_brg"),
                     hasil.getString("jenis"),
-                    hasil.getBigDecimal("hargabeli"),
-                    hasil.getBigDecimal("hargajual")
+                    hasil.getBigDecimal("harga_beli"),
+                    hasil.getBigDecimal("harga_jual")
                 });
             }
 
@@ -336,7 +336,7 @@ public class Data_Barang extends javax.swing.JFrame {
 
     private void bubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bubahActionPerformed
 
-        String sql = "UPDATE barang SET nm_brg=?, jenis=?, hargabeli=?, hargajual=? WHERE kd_brg=?";
+        String sql = "UPDATE  FROM barang SET nm_brg=?, jenis=?, harga_beli=?, harga_jual=? WHERE kd_brg=?";
 
         try {
             PreparedStatement stat = conn.prepareStatement(sql);
